@@ -10,7 +10,7 @@ public class GenericStack<T> {
         headNode = null;
         length=0;
     }
-    void push(T data){
+    public void push(T data){
         CustomNode<T> newNode = new CustomNode<>(data);
         if(headNode == null){
             headNode = newNode;
@@ -25,19 +25,26 @@ public class GenericStack<T> {
         length++;
     }
     void pop(){
-
-        CustomNode<T> copy = headNode;
-        if(this.isEmpty()){
-            throw new EmptyStackException();
+        try{
+            CustomNode<T> copy = headNode;
+            if(this.isEmpty()){
+                throw new EmptyStackException();
+            }
+            if(copy.ptr==null){
+                headNode = null;
+                return;
+            }
+            while(copy.ptr.ptr!=null){
+                copy=copy.ptr;
+            }
+            copy.ptr = null;
         }
-        if(copy.ptr==null){
-            headNode = null;
-            return;
+        catch (EmptyStackException e){
+            System.out.println("Your Stack was Empty: "+e.getMessage());
         }
-        while(copy.ptr.ptr!=null){
-            copy=copy.ptr;
+        finally {
+            System.out.println("Pop function peacefully resolved");
         }
-        copy.ptr = null;
 
 
     }
@@ -48,6 +55,16 @@ public class GenericStack<T> {
 
     int size(){
         return length;
+    }
+
+    void print(){
+        CustomNode<T> copy = headNode;
+        System.out.print("The Data Members are: ");
+        while(copy!=null){
+            System.out.print(copy.dataPill + " -> ");
+            copy=copy.ptr;
+        }
+        System.out.println();
     }
 
 
