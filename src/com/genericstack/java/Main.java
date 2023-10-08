@@ -1,2 +1,5 @@
-package com.genericstack.java;public class Main {
+package com.genericstack.java;
+
+public class Main {
+
 }
