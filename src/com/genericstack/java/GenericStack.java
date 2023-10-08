@@ -24,6 +24,23 @@ public class GenericStack<T> {
         }
         length++;
     }
+    void pop(){
+
+        CustomNode<T> copy = headNode;
+        if(this.isEmpty()){
+            throw new EmptyStackException();
+        }
+        if(copy.ptr==null){
+            headNode = null;
+            return;
+        }
+        while(copy.ptr.ptr!=null){
+            copy=copy.ptr;
+        }
+        copy.ptr = null;
+
+
+    }
 
 
 
