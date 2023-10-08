@@ -42,6 +42,13 @@ public class GenericStack<T> {
 
     }
 
+    boolean isEmpty(){
+        return headNode == null;
+    }
+
+    int size(){
+        return length;
+    }
 
 
 }
